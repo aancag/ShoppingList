@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<br/><br/>
+<div class="container">
+    <button type="button" class="btn btn-default" ng-click="toggleDescriptionShow()" >+</button>
+    <button type="button" class="btn btn-default" ng-click="deleteBoughtProducts()" > Delete bought products!</button>
+    <input ng-model="searchText" type="text" >
+
+    <div class="jumbotron" ng-show="descriptionShow">
+        <input type="text" id="name"  ng-model="product.name"
+               placeholder="Product name" ng-required>
+        <input type="text" id="quantity"  ng-model="product.quantity"
+               placeholder="Product quantity" ng-required>
+        <button type="button" class="btn btn-default"  ng-click="create(product)">Add Product</button>
+    </div>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Bought</th>
+            <th>Products</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+       <tr ng-repeat="product in products | filter:searchText">
+           <td>
+               <input type="checkbox" ng-click="toggleBoughtShow(product)">
+           </td>
+
+           <td ng-show="!product.edit && !product.bought">
+                {{product.name}}
+            </td>
+            <td ng-show="!product.edit  && !product.bought">
+                {{product.quantity}}
+            </td>
+
+
+           <td ng-show="product.bought ">
+               <del>{{product.name}}</del>
+           </td>
+           <td ng-show="product.bought">
+               <del>{{product.quantity}}</del>
+           </td>
+
+
+
+           <td ng-show="product.edit && !product.bought">
+                <input type="text"  ng-model="product.name">
+            </td>
+            <td ng-show="product.edit && !product.bought">
+                <input type="text"  ng-model="product.quantity">
+            </td>
+           <td>
+               <button type="button" class="btn btn-default" ng-click="toggleEditShow(product)">EDIT</button>
+           </td>
+
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>
