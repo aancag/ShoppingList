@@ -55,9 +55,13 @@ hrApp.controller('MainController', ['$scope', function($scope) {
         }
     };
     $scope.deleteBoughtProducts = function(){
-        $scope.products = $scope.products.filter(function(product){
-            return product.bought == false;
-        });
+          for(var i = 0; i < $scope.products.length; i++){
+
+            if($scope.products[i].bought == true){
+                $scope.products.splice(i, 1);
+                i--;
+            }
+        }
     }
 }
 ]);
