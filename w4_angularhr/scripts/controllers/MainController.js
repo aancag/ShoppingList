@@ -17,22 +17,17 @@ hrApp.controller('MainController', ['$scope', function($scope) {
             "bought" : false
         }
     ];
+
     $scope.descriptionShow = false;
     $scope.toggleDescriptionShow = function() {
-        if($scope.descriptionShow == true) {
-            $scope.descriptionShow = false;
-        } else {
-            $scope.descriptionShow = true;
-        }
+        $scope.descriptionShow = !$scope.descriptionShow;
     };
 
     $scope.create = function (product) {
         $scope.products.push(
             {
                 "name" : product.name,
-
                 "quantity" : product.quantity,
-
                 "edit" : product.edit,
                 "bought" : product.bought
             }
@@ -40,23 +35,15 @@ hrApp.controller('MainController', ['$scope', function($scope) {
     }
 
     $scope.toggleEditShow = function(product) {
-        if(product.edit == true) {
-            product.edit = false;
-        } else {
-            product.edit = true;
-        }
+        product.edit = !product.edit;
     };
 
     $scope.toggleBoughtShow = function(product) {
-        if(product.bought == true) {
-            product.bought = false;
-        } else {
-            product.bought = true;
-        }
+        product.bought = !product.bought;
     };
+
     $scope.deleteBoughtProducts = function(){
           for(var i = 0; i < $scope.products.length; i++){
-
             if($scope.products[i].bought == true){
                 $scope.products.splice(i, 1);
                 i--;

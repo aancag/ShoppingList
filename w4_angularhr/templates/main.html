@@ -25,6 +25,7 @@
             <th>Products</th>
             <th>Quantity</th>
             <th></th>
+            <th></th>
         </tr>
        <tr ng-repeat="product in products | customFilter:searchText">
            <td>
@@ -38,15 +39,12 @@
                 {{product.quantity}}
             </td>
 
-
            <td ng-show="product.bought ">
                <del>{{product.name}}</del>
            </td>
            <td ng-show="product.bought">
                <del>{{product.quantity}}</del>
            </td>
-
-
 
            <td ng-show="product.edit && !product.bought">
                 <input type="text"  ng-model="product.name">
