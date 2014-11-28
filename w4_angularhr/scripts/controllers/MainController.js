@@ -60,5 +60,21 @@ hrApp.controller('MainController', ['$scope', function($scope) {
         });
     }
 }
-
 ]);
+
+myFiltersModule.filter('customFilter', [
+    function() {
+    return function (products, searchText) {
+        var filtered = [];
+        if(searchText == null){
+            return products;
+        }
+        for (var i = 0; i < products.length; i++) {
+            var item = products[i];
+            if(angular.equals(searchText, item.name.substring(0, searchText.length) )){
+                filtered.push(item);
+            }
+        }
+        return filtered;
+    };
+}]);

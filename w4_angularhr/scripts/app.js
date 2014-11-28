@@ -1,7 +1,11 @@
 /**
  * Created by Anca on 22.10.2014.
+ *
  */
-var hrApp = angular.module('hrApp', ['ngRoute', 'ngResource']);
+
+var myFiltersModule = angular.module('myFilters', []);
+
+var hrApp = angular.module('hrApp', ['ngRoute', 'ngResource', 'myFilters']);
 hrApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
@@ -10,3 +14,10 @@ hrApp.config(['$routeProvider',
                 controller: 'MainController'
             });
     }]);
+
+hrApp.directive("Bought", function(){
+    return {
+        restrict : "E",
+        template: "<th>Bought</th>"
+    }
+});
