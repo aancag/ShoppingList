@@ -40,12 +40,13 @@ namespace ShoppingListWeb.Controllers
         }
 
         // POST api/values
-        public HttpResponseMessage Post(myShoppingList sL)
+        public HttpResponseMessage Post(shoppingListDBModel sL)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    sL._id = Guid.NewGuid().ToString(); 
                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, sL);
                    dbService.Create(sL);
                    return response;
@@ -71,13 +72,5 @@ namespace ShoppingListWeb.Controllers
         public void Delete(int id)
         {
         }
-    }
-
-    //se mapeaza cu ce primeste din angular
-    public class myShoppingList
-    {
-        public String Name { get; set; }
-        public String Quantity { get; set; }
-        public Boolean Bought { get; set; }
     }
 }

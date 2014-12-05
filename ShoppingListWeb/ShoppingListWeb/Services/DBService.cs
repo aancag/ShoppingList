@@ -24,7 +24,7 @@ namespace ShoppingListWeb.Services
             this.collection = db.GetCollection<myShoppingList>("info");
         }
 
-        public void Create(myShoppingList entry) {
+        public void Create(shoppingListDBModel entry) {
             collection.Insert(entry);
             collection.Save(entry);
         }

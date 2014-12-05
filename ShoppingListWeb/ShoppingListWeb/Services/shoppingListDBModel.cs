@@ -11,10 +11,7 @@ namespace ShoppingListWeb.App_Start
 {
     public class shoppingListDBModel
     {
-        //[BsonId]
-        //[BsonRepresentation(BsonType.ObjectId)]
-        //[BsonId(IdGenerator = typeof(StringObjectIdGenerator))] 
-        public ObjectId _id { get; set; }
+        public String _id { get; set; }
         public String Name { get; set; }
         public String Quantity { get; set; }
         public Boolean Bought { get; set; }
