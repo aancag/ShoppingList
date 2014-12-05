@@ -12,9 +12,9 @@
     <input  placeholder="Search for product" ng-model="searchText" type="text" >
 
     <div class="jumbotron" ng-show="descriptionShow">
-        <input type="text" id="name"  ng-model="product.name"
+        <input type="text" id="name"  ng-model="product.Name"
                placeholder="Product name" ng-required>
-        <input type="text" id="quantity"  ng-model="product.quantity"
+        <input type="text" id="quantity"  ng-model="product.Quantity"
                placeholder="Product quantity" ng-required>
         <button type="button" class="btn btn-default"  ng-click="create(product)">Add Product</button>
     </div>
@@ -22,9 +22,9 @@
     <table class="table table-bordered">
         <tr>
             <Bought></Bought>
+            <th></th>
             <th>Products</th>
             <th>Quantity</th>
-            <th></th>
             <th></th>
         </tr>
        <tr ng-repeat="product in products | customFilter:searchText">
@@ -32,28 +32,28 @@
                <input type="checkbox" ng-click="toggleBoughtShow(product)">
            </td>
 
-           <td ng-show="!product.edit && !product.bought">
-                {{product.name}}
+           <td ng-show="!product.Edit && !product.Bought">
+                {{product.Name}}
             </td>
-            <td ng-show="!product.edit  && !product.bought">
-                {{product.quantity}}
+            <td ng-show="!product.Edit  && !product.Bought">
+                {{product.Quantity}}
             </td>
 
-           <td ng-show="product.bought ">
-               <del>{{product.name}}</del>
+           <td ng-show="product.Bought ">
+               <del>{{product.Name}}</del>
            </td>
-           <td ng-show="product.bought">
-               <del>{{product.quantity}}</del>
+           <td ng-show="product.Bought">
+               <del>{{product.Quantity}}</del>
            </td>
 
-           <td ng-show="product.edit && !product.bought">
-                <input type="text"  ng-model="product.name">
+           <td ng-show="product.Edit && !product.Bought">
+                <input type="text"  ng-model="product.Name">
             </td>
-            <td ng-show="product.edit && !product.bought">
-                <input type="text"  ng-model="product.quantity">
+            <td ng-show="product.Edit && !product.Bought">
+                <input type="text"  ng-model="product.Quantity">
             </td>
            <td>
-               <button type="button" class="btn btn-default" ng-click="toggleEditShow(product)">EDIT</button>
+               <button type="button" class="btn btn-default" ng-click="toggleEditShow(product, product.Name, product.Quantity)">EDIT</button>
            </td>
 
         </tr>
