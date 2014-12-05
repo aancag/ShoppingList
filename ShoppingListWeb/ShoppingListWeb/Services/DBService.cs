@@ -14,14 +14,14 @@ namespace ShoppingListWeb.Services
     public class DBService
     {
         private MongoDatabase db;
-        private MongoCollection<myShoppingList> collection;
+        private MongoCollection<shoppingListDBModel> collection;
 
         public DBService() {
             var connectionString = "mongodb://localhost:27017";
             MongoClient client = new MongoClient(connectionString);
             var server = client.GetServer();
             this.db = server.GetDatabase("shoppingList");
-            this.collection = db.GetCollection<myShoppingList>("info");
+            this.collection = db.GetCollection<shoppingListDBModel>("info");
         }
 
         public void Create(shoppingListDBModel entry) {
@@ -31,9 +31,22 @@ namespace ShoppingListWeb.Services
 
         public String Retrive() {
             MongoCursor<shoppingListDBModel> all = collection.FindAllAs<shoppingListDBModel>();
-            //var allDB = db.GetCollection<BsonDocument>("info");
             return all.ToArray().ToJson();
         }
+
+        public void Update(String id, shoppingListDBModel entry) {
+            var query = new QueryDocument("_id", id);
+            var updateName = new UpdateDocument { {"$set", new BsonDocument("Name", entry.Name)} };
+            collection.Update(query, updateName);
+            var updateQuantity = new UpdateDocument { { "$set", new BsonDocument("Quantity", entry.Quantity) } };
+            collection.Update(query, updateQuantity);
+        }
+
+        public void Delete(String entry) {
+            var query = new QueryDocument("_id", entry);
+            collection.Remove(query);
+        }
+        
     }
    
 }

@@ -46,7 +46,7 @@ namespace ShoppingListWeb.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    sL._id = Guid.NewGuid().ToString(); 
+                   sL._id = Guid.NewGuid().ToString(); 
                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, sL);
                    dbService.Create(sL);
                    return response;
@@ -64,13 +64,35 @@ namespace ShoppingListWeb.Controllers
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(String id, shoppingListDBModel sL)
         {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    dbService.Update(id, sL);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, sL);
+                    return response;
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Invalid Model");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public String Delete(String id)
         {
+            dbService.Delete(id);
+            return id;
+
         }
     }
 }
