@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-//using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Helpers;
@@ -12,7 +11,6 @@ using ShoppingListWeb.Services;
 using MongoDB.Bson;
 using ShoppingListWeb.App_Start;
 using System.Net.Http.Headers;
-//using System.Web.Mvc;
 
 namespace ShoppingListWeb.Controllers
 {
